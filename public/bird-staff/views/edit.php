@@ -16,12 +16,7 @@ if($bird == false) {
 if(is_post_request()) {
 
   // Save record using post parameters
-  $args = [];
-  $args['commnon_name'] = $_POST['common_name'] ?? NULL;
-  $args['habitat'] = $_POST['habitat'] ?? NULL;
-  $args['food'] = $_POST['food'] ?? NULL;
-  $args['conservation_id'] = $_POST['conservation_id'] ?? NULL;
-  $args['backyard_tips'] = $_POST['backyard_tips'] ?? NULL;
+  $bird = new Bird($args);
 
   $bird = [];
 
