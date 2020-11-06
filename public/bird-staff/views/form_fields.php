@@ -8,17 +8,17 @@ if(!isset($bird)) {
 
 <dl>
   <dt>Name</dt>
-  <dd><input type="text" name="common_name" value="" /></dd>
+  <dd><input type="text" name="common_name" value="<?php echo h($bird->common_name); ?>" /></dd>
 </dl>
 
 <dl>
   <dt>Habitat</dt>
-  <dd><input type="text" name="habitat" value="" /></dd>
+  <dd><input type="text" name="habitat" value="<?php echo h($bird->habitat); ?>" /></dd>
 </dl>
 
 <dl>
   <dt>Food</dt>
-  <dd><input type="text" name="food" value="" /></dd>
+  <dd><input type="text" name="food" value="<?php echo h($bird->food); ?>" /></dd>
 </dl>
 
 <dl>
@@ -36,5 +36,5 @@ if(!isset($bird)) {
 
 <dl>
   <dt>Backyard Tips</dt>
-  <dd><input type="text" name="backyard_tips" value="" /></dd>
+  <dd><input type="text" name="backyard_tips" value="<?php echo h($bird->backyard_tips); ?>" /></dd>
 </dl>
