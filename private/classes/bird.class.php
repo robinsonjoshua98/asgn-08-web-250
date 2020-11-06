@@ -7,6 +7,8 @@
     static protected $database;
     static protected $db_columns = ['common_name', 'habitat', 'food', 'conservation_id', 'backyard_tips'];
 
+    public $errors = [];
+
     static public function set_database($database) {
         self::$database = $database;
     }
@@ -26,6 +28,18 @@
         return $object_array;
     }
     
+    protected function validate(){
+        $this->errors = [];
+
+        if(is_blank($this->brand)) {
+          $this->errors[] = "Brand cannot be blank.";
+        }
+        if(is_blank($this->model)) {
+          $this->errors[] = "Model cannot be blank.";
+        }
+        return $this->errors;
+    }
+
     static public function find_by_id($id) {
         $sql = "SELECT * FROM birds ";
         $sql .= "WHERE id=" . self::$database->quote($id);
@@ -103,6 +117,8 @@
     }
 
     public function create() {
+        $this->validate();
+        if(!empty($this->errors)) { return false; }
         $attributes = $this->attributes();
         $sql = "INSERT INTO birds (";
         $sql .= join(', ', array_keys($attributes));
@@ -117,6 +133,8 @@
       }
 
       protected function update() {
+        $this->validate();
+        if(!empty($this->errors)) { return false; }
         $attributes = $this->sanitized_attributes();
         $attribute_pairs = [];
         foreach($attributes as $key => $value) {
