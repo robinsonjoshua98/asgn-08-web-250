@@ -7,6 +7,12 @@ if(!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 
+
+$bird = Bird::find_by_id($id);
+if($bird == false) {
+  redirect_to(url_for('/bird-staff/views/index.php'));
+}
+
 if(is_post_request()) {
 
   // Save record using post parameters
@@ -31,10 +37,6 @@ if(is_post_request()) {
 
   // display the form
 
-  $bird = Bird::find_by_id($id);
-  if($bird == false) {
-    redirect_to(url_for('/bird-staff/views/index.php'));
-  }
 }
 
 
